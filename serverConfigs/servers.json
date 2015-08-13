@@ -1,0 +1,6 @@
+{
+	"testdroid": {
+		"host": "appium.testdroid.com/wd/hub",
+		"port": 80
+	}
+}

@@ -1,0 +1,33 @@
+{
+  "node": true,
+  "browser": true,
+  "es5": false,
+  "esnext": true,
+  "bitwise": true,
+  "camelcase": false,
+  "curly": true,
+  "eqeqeq": false,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "quotmark": "single",
+  "regexp": true,
+  "undef": true,
+  "unused": false,
+  "strict": true,
+  "trailing": false,
+  "smarttabs": true,
+  "globals": {
+    "angular": false,
+    "log":false,
+    "mixpanel":false,
+    "$": false,
+    "olark": false,
+    "LOCAL_LOCATION_en_US": false,
+    "LOCAL_LOCATION_ja_JP": false,
+    "Intercom": false,
+    "Firebase": false,
+    "DEBUG_*": false
+  }
+}
