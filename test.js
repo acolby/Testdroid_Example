@@ -109,10 +109,8 @@ describe("ios safari", function() {
             .saveScreenshot(SCREEN_SHOT_PATH + '/test2.png')
             .sleep(2000)
             .elementByName('q')
-            .then(function(el){
-                console.log(el);
-                return pinch(el);
-            })
+            .pinch()
+            .saveScreenshot(SCREEN_SHOT_PATH + '/test3.png')
             .sleep(2000)
             .saveScreenshot('./test3.png');
     });
@@ -146,4 +144,3 @@ wd.addPromiseChainMethod('pinch', pinch);
         return m.perform();
       }.bind(this));
     }
-*/
