@@ -1,22 +1,27 @@
 var serverConfigs = require('./serverConfigs/servers.json');
 var deviceFinder = require('./lib/testdroiddevicefinder.js');
 var creds = require('./.creds.json');
-var q = Q = require('q');
+var q = require('q');
+var Q = q;
 var wd = require('wd');
-var logger = require("./helpers/logger.js").configure;
-
-///
-require('colors');
 var chai = require("chai");
+require('colors');
 var chaiAsPromised = require("chai-as-promised");
+var logger = require("./helpers/logger.js").configure;
+var addPinch = require("./lib/Multitouch/pinch.js").addPinch;
+
+/// Chai
 chai.use(chaiAsPromised);
 var should = chai.should();
 chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 
+// Configure Assertion Preference
 exports.should = should;
-///
-var SCREEN_SHOT_PATH = './screeners';
 
+// Set Screenshot path base
+var SCREEN_SHOT_PATH = './temp';
+
+// Handle Uncaught Exceptions
 process.on('uncaughtException', function(err) {
     console.log('uncaugth excetion!!!: ');
     console.log(err);
@@ -27,13 +32,12 @@ var serverConfig = serverConfigs.testdroid;
 serverConfig.password = creds.testdroid.password;
 serverConfig.username = creds.testdroid.username;
 
+// Add Multitouch Gestures
+addPinch(wd);    // adding method pinch(el)
+
 var driver = wd.remote(serverConfig, 'promiseChain');
 
-
 function setup() {
-
-    
-
     // Find and initalize device
     var desired = {};
     var deffered = q.defer();
@@ -97,45 +101,49 @@ describe("ios safari", function() {
 
     it("should get the url", function() {
         return driver.get('https://www.google.com')
-            .sleep(10000)
-            .saveScreenshot('./test.png')
-            .sleep(4000)
+            .sleep(2000)
+            .saveScreenshot(SCREEN_SHOT_PATH + '/test.png')
+            .sleep(2000)
             .setOrientation('LANDSCAPE')
-            .sleep(4000)
-            .saveScreenshot('./test2.png')
-            .sleep(4000)
+            .sleep(2000)
+            .saveScreenshot(SCREEN_SHOT_PATH + '/test2.png')
+            .sleep(2000)
             .elementByName('q')
             .then(function(el){
                 console.log(el);
                 return pinch(el);
             })
-            .sleep(4000)
+            .sleep(2000)
             .saveScreenshot('./test3.png');
     });
 });
 
-// javascript
-function pinch(el) {
-  return Q.all([
-    el.getSize(),
-    el.getLocation(),
-  ]).then(function(res) {
-    var size = res[0];
-    var loc = res[1];
-    var center = {
-      x: loc.x + size.width / 2,
-      y: loc.y + size.height / 2
-    };
-    var a1 = new wd.TouchAction(this);
-    a1.press({el: el, x: center.x, y:center.y - 100}).moveTo({el: el}).release();
-    var a2 = new wd.TouchAction(this);
-    a2.press({el: el, x: center.x, y: center.y + 100}).moveTo({el: el}).release();
-    var m = new wd.MultiAction(this);
-    m.add(a1, a2);
-    return m.perform();
-  }.bind(this));
-}
+
 wd.addPromiseChainMethod('pinch', pinch);
-wd.addElementPromiseChainMethod('pinch', function() {
-  return this.browser.pinch(this);
-});
+
+    wd.addElementPromiseChainMethod('pinch', function() {
+      return this.browser.pinch(this);
+    });
+
+
+    function pinch(el) {
+      return Q.all([
+        el.getSize(),
+        el.getLocation(),
+      ]).then(function(res) {
+        var size = res[0];
+        var loc = res[1];
+        var center = {
+          x: loc.x + size.width / 2,
+          y: loc.y + size.height / 2
+        };
+        var a1 = new wd.TouchAction(this);
+        a1.press({el: el, x: center.x, y:center.y - 100}).moveTo({el: el}).release();
+        var a2 = new wd.TouchAction(this);
+        a2.press({el: el, x: center.x, y: center.y + 100}).moveTo({el: el}).release();
+        var m = new wd.MultiAction(this);
+        m.add(a1, a2);
+        return m.perform();
+      }.bind(this));
+    }
+*/
