@@ -32,9 +32,6 @@ var serverConfig = serverConfigs.testdroid;
 serverConfig.password = creds.testdroid.password;
 serverConfig.username = creds.testdroid.username;
 
-// Add Multitouch Gestures
-addPinch(wd);    // adding method pinch(el)
-
 var driver = wd.remote(serverConfig, 'promiseChain');
 
 function setup() {
@@ -107,41 +104,6 @@ describe("ios safari", function() {
             .setOrientation('LANDSCAPE')
             .sleep(4000)
             .saveScreenshot(SCREEN_SHOT_PATH + '/test2.png')
-            .sleep(4000)
-            .elementByCss('#rect')
-            .then(function(el){
-                return (new wd.TouchAction(driver)).press(el);
-            })
-            .sleep(4000)
-            .saveScreenshot('./test3.png');
+            .sleep(4000)            
     });
 });
-
-
-wd.addPromiseChainMethod('pinch', pinch);
-
-    wd.addElementPromiseChainMethod('pinch', function() {
-      return this.browser.pinch(this);
-    });
-
-
-    function pinch(el) {
-      return Q.all([
-        el.getSize(),
-        el.getLocation(),
-      ]).then(function(res) {
-        var size = res[0];
-        var loc = res[1];
-        var center = {
-          x: loc.x + size.width / 2,
-          y: loc.y + size.height / 2
-        };
-        var a1 = new wd.TouchAction(this);
-        a1.press({el: el, x: center.x, y:center.y - 100}).moveTo({el: el}).release();
-        var a2 = new wd.TouchAction(this);
-        a2.press({el: el, x: center.x, y: center.y + 100}).moveTo({el: el}).release();
-        var m = new wd.MultiAction(this);
-        m.add(a1, a2);
-        return m.perform();
-      }.bind(this));
-    }
