@@ -100,18 +100,19 @@ describe("ios safari", function() {
     });
 
     it("should get the url", function() {
-        return driver.get('https://www.google.com')
-            .sleep(2000)
+        return driver.get('http://store.nike.com/us/en_us/pd/woven-loose-running-pants/pid-10204484/pgid-10298561')
+            .sleep(4000)
             .saveScreenshot(SCREEN_SHOT_PATH + '/test.png')
-            .sleep(2000)
+            .sleep(4000)
             .setOrientation('LANDSCAPE')
-            .sleep(2000)
+            .sleep(4000)
             .saveScreenshot(SCREEN_SHOT_PATH + '/test2.png')
-            .sleep(2000)
-            .elementByName('q')
-            .pinch()
-            .saveScreenshot(SCREEN_SHOT_PATH + '/test3.png')
-            .sleep(2000)
+            .sleep(4000)
+            .elementByCss('#rect')
+            .then(function(el){
+                return (new wd.TouchAction(driver)).press(el);
+            })
+            .sleep(4000)
             .saveScreenshot('./test3.png');
     });
 });
