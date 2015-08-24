@@ -31,7 +31,7 @@ You will need to add some an object that looks this to the directory ./.creds.js
 #### to Run the test 
 
 ```sh
-$ mocha test.js
+$ mocha ios_safari.js
 ```
 
 

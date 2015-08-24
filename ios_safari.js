@@ -8,7 +8,6 @@ var chai = require("chai");
 require('colors');
 var chaiAsPromised = require("chai-as-promised");
 var logger = require("./helpers/logger.js").configure;
-var addPinch = require("./lib/Multitouch/pinch.js").addPinch;
 
 /// Chai
 chai.use(chaiAsPromised);
