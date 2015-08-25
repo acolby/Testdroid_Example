@@ -1,60 +1,81 @@
 {
-  "src_folders" : ["nightwatch_tests"],
-  "output_folder" : "./nightwatch_tests/reports",
-  "custom_commands_path" : "",
-  "custom_assertions_path" : "",
-  "page_objects_path" : "",
-  "globals_path" : "",
+    "src_folders": ["nightwatch_tests"],
+    "output_folder": "./nightwatch_tests/reports",
+    "custom_commands_path": "",
+    "custom_assertions_path": "",
+    "page_objects_path": "",
+    "globals_path": "",
 
-  "test_settings" : {
-  	"default":{
-	  	"launch_url" : "http://10.195.171.228:4723/wd/hub",
-	    "selenium_port"  : 4723,
-	    "selenium_host"  : "10.195.171.228",
-	    "screenshots" : {
-		    "enabled" : false,
-		    "path" : ""
-		},
-      "desiredCapabilities": {
-        "platformName": "ios",
-        "deviceName": "iPod",
-        "platformVersion": "8.1.1",
-        "browserName": "safari"
-       }
-	},
-  	"safari":{
-	  	"launch_url" : "http://10.195.171.228:4723/wd/hub",
-	    "selenium_port"  : 4723,
-	    "selenium_host"  : "10.195.171.228",
-	    "screenshots" : {
-		    "enabled" : false,
-		    "path" : ""
-		},
-      "desiredCapabilities": {
-        "platformName": "ios",
-        "deviceName": "iPod",
-        "platformVersion": "8.1.1",
-        "browserName": "safari"
-       }
-	},
-	"testdroid":{
-	  	"launch_url" : "http://appium.testdroid.com:80/wd/hub",
-	    "selenium_port"  : 80,
-	    "selenium_host"  : "appium.testdroid.com",
-	    "screenshots" : {
-		    "enabled" : false,
-		    "path" : ""
-		},
-      "desiredCapabilities": { 
-		    "testdroid_username": "",
-		    "testdroid_password": "",
-		    "testdroid_target": "android",
-		    "testdroid_project": "Test",
-		    "testdroid_testrun": "TestRun",
-		    "testdroid_device": "Huawei Fusion 2 U8665",
-		    "platformName": "Android",
-		    "browserName": "chrome" 
-		}
-	}
-  }
+    "test_settings": {
+        "default": {
+            "launch_url": "http://10.195.171.228:4723/wd/hub",
+            "selenium_port": 4723,
+            "selenium_host": "10.195.171.228",
+            "screenshots": {
+                "enabled": false,
+                "path": ""
+            },
+            "desiredCapabilities": {
+                "platformName": "ios",
+                "deviceName": "iPod",
+                "platformVersion": "8.1.1",
+                "browserName": "safari"
+            }
+        },
+        "safari": {
+            "launch_url": "http://10.195.171.228:4723/wd/hub",
+            "selenium_port": 4723,
+            "selenium_host": "10.195.171.228",
+            "screenshots": {
+                "enabled": false,
+                "path": ""
+            },
+            "desiredCapabilities": {
+                "platformName": "ios",
+                "deviceName": "iPod",
+                "platformVersion": "8.1.1",
+                "browserName": "safari"
+            }
+        },
+        "testdroid_android": {
+            "launch_url": "http://appium.testdroid.com:80/wd/hub",
+            "selenium_port": 80,
+            "selenium_host": "appium.testdroid.com",
+            "screenshots": {
+                "enabled": false,
+                "path": ""
+            },
+            "desiredCapabilities": {
+                "testdroid_username": "",
+                "testdroid_password": "",
+                "testdroid_target": "chrome",
+                "testdroid_project": "Test Android",
+                "testdroid_testrun": "TestRun",
+                "testdroid_device": "HTC Wildfire S A510e",
+                "deviceName": "HTC Wildfire S A510e",
+                "platformName": "Android",
+                "browserName": "browser"
+            }
+        },
+        "testdroid_ios": {
+            "launch_url": "http://appium.testdroid.com:80/wd/hub",
+            "selenium_port": 80,
+            "selenium_host": "appium.testdroid.com",
+            "screenshots": {
+                "enabled": false,
+                "path": ""
+            },
+            "desiredCapabilities": {
+                "testdroid_username": "",
+                "testdroid_password": "",
+                "testdroid_target": "safari",
+                "testdroid_project": "Test",
+                "testdroid_testrun": "TestRun",
+                "testdroid_device": "iPad 3 A1416 8.2",
+                "platformName": "iOS",
+                "deviceName": "iPad 3 A1416 8.2",
+                "browserName": "safari"
+            }
+        }
+    }
 }
