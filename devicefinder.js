@@ -23,7 +23,6 @@ function findDevices() {
 
     return deviceFinder.getDevices(100, searchTerm)
     .then(function(devices) {
-
         devices = devices.data;
         // once all devices are found        
         if(devices.length > 0){
