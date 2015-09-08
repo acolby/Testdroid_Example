@@ -17,7 +17,7 @@ chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 // Configure Assertion Preference
 exports.should = should;
 
-// Set Screenshot path base
+// Set Screenshot path base - make sure that screenshot path exists
 var SCREEN_SHOT_PATH = './temp';
 
 // Handle Uncaught Exceptions
